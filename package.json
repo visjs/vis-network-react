@@ -30,5 +30,10 @@
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "vis-data": "^6.5.0",
+    "vis-network": "^7.4.0",
+    "vis-util": "^4.0.0"
+  }
 }
