@@ -1,111 +1,166 @@
-import React, { useRef, useState, useMemo, useEffect } from 'react';
-import PropTypes from "prop-types";
-
-import { DataSet } from "vis-data";
-import { Network } from "vis-network/peer/esm/vis-network";
+import React, { Component } from "react";
 import defaultsDeep from "lodash/fp/defaultsDeep";
 import isEqual from "lodash/isEqual";
 import differenceWith from "lodash/differenceWith";
+import { DataSet } from "vis-data";
+import { Network } from "vis-network/peer/esm/vis-network";
+import uuid from "uuid";
+import PropTypes from "prop-types";
+
 import "vis-network/styles/vis-network.css";
 
-const defaultOptions = {
-    physics: {
-      stabilization: false
-    },
-    autoResize: false,
-    edges: {
-      smooth: false,
-      color: "#000000",
-      width: 0.5,
-      arrows: {
-        to: {
-          enabled: true,
-          scaleFactor: 0.5
+class Graph extends Component {
+  constructor(props) {
+    super(props);
+    const { identifier } = props;
+    this.updateGraph = this.updateGraph.bind(this);
+    this.state = {
+      identifier: identifier !== undefined ? identifier : uuid.v4()
+    };
+    this.container = React.createRef();
+  }
+
+  componentDidMount() {
+    this.edges = new DataSet(this.props.graph.edges);
+    // this.edges.add(this.props.graph.edges);
+    this.nodes = new DataSet(this.props.graph.nodes);
+    // this.nodes.add(this.props.graph.nodes);
+
+    this.updateGraph();
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    let nodesChange = !isEqual(this.props.graph.nodes, nextProps.graph.nodes);
+    let edgesChange = !isEqual(this.props.graph.edges, nextProps.graph.edges);
+    let optionsChange = !isEqual(this.props.options, nextProps.options);
+    let eventsChange = !isEqual(this.props.events, nextProps.events);
+
+    if (nodesChange) {
+      const idIsEqual = (n1, n2) => n1.id === n2.id;
+      const nodesRemoved = differenceWith(this.props.graph.nodes, nextProps.graph.nodes, idIsEqual);
+      const nodesAdded = differenceWith(nextProps.graph.nodes, this.props.graph.nodes, idIsEqual);
+      const nodesChanged = differenceWith(
+        differenceWith(nextProps.graph.nodes, this.props.graph.nodes, isEqual),
+        nodesAdded
+      );
+      this.patchNodes({ nodesRemoved, nodesAdded, nodesChanged });
+    }
+
+    if (edgesChange) {
+      const edgesRemoved = differenceWith(this.props.graph.edges, nextProps.graph.edges, isEqual);
+      const edgesAdded = differenceWith(nextProps.graph.edges, this.props.graph.edges, isEqual);
+      const edgesChanged = differenceWith(
+        differenceWith(nextProps.graph.edges, this.props.graph.edges, isEqual),
+        edgesAdded
+      );
+      this.patchEdges({ edgesRemoved, edgesAdded, edgesChanged });
+    }
+
+    if (optionsChange) {
+      this.Network.setOptions(nextProps.options);
+    }
+
+    if (eventsChange) {
+      let events = this.props.events || {};
+      for (let eventName of Object.keys(events)) this.Network.off(eventName, events[eventName]);
+
+      events = nextProps.events || {};
+      for (let eventName of Object.keys(events)) this.Network.on(eventName, events[eventName]);
+    }
+
+    return false;
+  }
+
+  componentDidUpdate() {
+    this.updateGraph();
+  }
+
+  patchEdges({ edgesRemoved, edgesAdded, edgesChanged }) {
+    this.edges.remove(edgesRemoved);
+    this.edges.add(edgesAdded);
+    this.edges.update(edgesChanged);
+  }
+
+  patchNodes({ nodesRemoved, nodesAdded, nodesChanged }) {
+    this.nodes.remove(nodesRemoved);
+    this.nodes.add(nodesAdded);
+    this.nodes.update(nodesChanged);
+  }
+
+  updateGraph() {
+    let defaultOptions = {
+      physics: {
+        stabilization: false
+      },
+      autoResize: false,
+      edges: {
+        smooth: false,
+        color: "#000000",
+        width: 0.5,
+        arrows: {
+          to: {
+            enabled: true,
+            scaleFactor: 0.5
+          }
         }
       }
+    };
+
+    // merge user provied options with our default ones
+    let options = defaultsDeep(defaultOptions, this.props.options);
+    this.Network = new Network(
+      this.container.current,
+      Object.assign({}, this.props.graph, {
+        edges: this.edges.get(),
+        nodes: this.nodes.get(),
+      }),
+      options
+    );
+
+    if (this.props.getNetwork) {
+      this.props.getNetwork(this.Network);
     }
-};
 
-const defaultStyle = { width: "100%", height: "100%" }
+    if (this.props.getNodes) {
+      this.props.getNodes(this.nodes);
+    }
 
-const VisNetworkReactComponent = ({ ref, graph, options, events, style = defaultStyle, getNetwork, getNodes, getEdges }) => {
-    const networkRef = ref || useRef(null);
-    const [ stateNodes, setNodes ] = useState(graph ? new DataSet(graph.nodes) : {})
-    const [ stateEdges, setEdges ] = useState(graph ? new DataSet(graph.edges) : {})
-    const [ stateOptions, setOptions ] = useState(options)
-    const [ stateEvents, setEvents ] = useState(events)
-    let network = useMemo(() => {
-        return null
-    }, [])
+    if (this.props.getEdges) {
+      this.props.getEdges(this.edges);
+    }
 
-    useEffect(() => {
-        network = new Network(networkRef.current, graph, { ...defaultOptions, ...options })
-    }, [])
+    // Add user provied events to network
+    let events = this.props.events || {};
+    for (let eventName of Object.keys(events)) {
+      this.Network.on(eventName, events[eventName]);
+    }
+  }
 
-    useEffect(() => {
-        let nodesChange = !isEqual(stateNodes, graph.nodes);
-        let edgesChange = !isEqual(stateEdges, graph.edges);
-        let optionsChange = !isEqual(stateOptions, options);
-        let eventsChange = !isEqual(stateEvents, events);
-
-        if (nodesChange || edgesChange) {
-            network.setData(graph)
-            setNodes(graph.nodes)
-            setEdges(graph.edges)
-        }
-        // if (nodesChange) {
-        //     const idIsEqual = (n1, n2) => n1.id === n2.id;
-        //     const nodesRemoved = differenceWith(graph.nodes, stateNodes, idIsEqual);
-        //     const nodesAdded = differenceWith(stateNodes, graph.nodes, idIsEqual);
-        //     const nodesChanged = differenceWith(
-        //       differenceWith(stateNodes, graph.nodes, isEqual),
-        //       nodesAdded
-        //     );
-        //     setNodes(graph.nodes)
-        //     this.patchNodes({ nodesRemoved, nodesAdded, nodesChanged });
-        // }
-      
-        // if (edgesChange) {
-        //     const edgesRemoved = differenceWith(graph.edges, stateEdges, isEqual);
-        //     const edgesAdded = differenceWith(stateEdges, graph.edges, isEqual);
-        //     const edgesChanged = differenceWith(
-        //       differenceWith(stateEdges, graph.edges, isEqual),
-        //       edgesAdded
-        //     );
-        //     setEdges(graph.edges)
-        //     this.patchEdges({ edgesRemoved, edgesAdded, edgesChanged });
-        // }
-      
-        if (optionsChange) {
-            setOptions(options)
-            network.setOptions({ ...defaultOptions, ...options });
-        }
-      
-        if (eventsChange) {
-            for (let eventName of Object.keys(stateEvents)) network.off(eventName, stateEvents[eventName]);
-            for (let eventName of Object.keys(events)) network.on(eventName, events[eventName]);
-            setEvents(events)
-        }
-
-    }, [ graph, options, events])
-
-    return (
-        <div 
-            ref={networkRef} 
-            style={style}
-        ></div>
-    )
+  render() {
+    const { identifier } = this.state;
+    const { style } = this.props;
+    return React.createElement(
+      "div",
+      {
+        id: identifier,
+        ref: this.container,
+        style
+      },
+      identifier
+    );
+  }
 }
 
-VisNetworkReactComponent.propTypes = {
-    graph: PropTypes.shape({
-        nodes: PropTypes.array,
-        edges: PropTypes.array,
-    }),
-    style: PropTypes.object,
-    getNetwork: PropTypes.func,
-    getNodes: PropTypes.func,
-    getEdges: PropTypes.func,
+Graph.defaultProps = {
+  graph: {},
+  style: { width: "100%", height: "100%" }
+};
+Graph.propTypes = {
+  graph: PropTypes.object,
+  style: PropTypes.object,
+  getNetwork: PropTypes.func,
+  getNodes: PropTypes.func,
+  getEdges: PropTypes.func,
 };
 
-export default VisNetworkReactComponent
+export default Graph;
