@@ -28,8 +28,8 @@ const defaultOptions = {
 
 const defaultStyle = { width: "100%", height: "100%" }
 
-const VisNetworkReactComponent = ({ graph, options, events, style = defaultStyle, getNetwork, getNodes, getEdges }) => {
-    const networkRef = useRef(null);
+const VisNetworkReactComponent = ({ ref, graph, options, events, style = defaultStyle, getNetwork, getNodes, getEdges }) => {
+    const networkRef = ref || useRef(null);
     const [ stateNodes, setNodes ] = useState(graph ? new DataSet(graph.nodes) : {})
     const [ stateEdges, setEdges ] = useState(graph ? new DataSet(graph.edges) : {})
     const [ stateOptions, setOptions ] = useState(options)
