@@ -12,6 +12,7 @@ import "vis-network/styles/vis-network.css";
 class Graph extends Component {
   constructor(props) {
     super(props);
+    console.log('tests')
     const { identifier } = props;
     this.updateGraph = this.updateGraph.bind(this);
     this.state = {

@@ -4,7 +4,9 @@
   "description": "",
   "main": "./lib/index.js",
   "scripts": {
-    "build": "./node_modules/.bin/babel src --out-file ./lib/index.js && cp ./lib/index.js ./example/src/VisNetworkReactComponent.js"
+    "link": "cd ./lib && npm link && cd ../example && npm link \"vis-network-react\"",
+    "build": "./node_modules/.bin/babel src --out-file ./lib/index.js",
+    "watch": "./node_modules/.bin/babel src --out-file ./lib/index.js --watch"
   },
   "repository": {
     "type": "git",
