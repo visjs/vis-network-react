@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 
-// import VisNetworkReactComponent from './VisNetworkReactComponent'
 import VisNetworkReactComponent from 'vis-network-react'
 
 

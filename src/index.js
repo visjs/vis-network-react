@@ -12,7 +12,6 @@ import "vis-network/styles/vis-network.css";
 class Graph extends Component {
   constructor(props) {
     super(props);
-    console.log('tests')
     const { identifier } = props;
     this.updateGraph = this.updateGraph.bind(this);
     this.state = {
@@ -23,9 +22,7 @@ class Graph extends Component {
 
   componentDidMount() {
     this.edges = new DataSet(this.props.graph.edges);
-    // this.edges.add(this.props.graph.edges);
     this.nodes = new DataSet(this.props.graph.nodes);
-    // this.nodes.add(this.props.graph.nodes);
 
     this.updateGraph();
   }
