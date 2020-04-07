@@ -8749,7 +8749,7 @@ vis-data@^6.5.0:
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/vis-data/-/vis-data-6.5.0.tgz#169ab48d3e44bc1d1a3a6a234191dfc4cef890f9"
 
-vis-network-react@^1.1.0:
+vis-network-react@1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/vis-network-react/-/vis-network-react-1.1.0.tgz#376517edaa735e0b05ac998c5dbd2e813a3b825a"
   dependencies:
