@@ -8745,22 +8745,22 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vis-data@^6.5.0:
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/vis-data/-/vis-data-6.5.0.tgz#169ab48d3e44bc1d1a3a6a234191dfc4cef890f9"
+vis-data@^6.5.1:
+  version "6.5.1"
+  resolved "https://registry.yarnpkg.com/vis-data/-/vis-data-6.5.1.tgz#cd11f8bbf4a17064559b7c75532c3d6f419ff290"
 
-vis-network-react@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/vis-network-react/-/vis-network-react-1.1.0.tgz#376517edaa735e0b05ac998c5dbd2e813a3b825a"
+vis-network-react@1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/vis-network-react/-/vis-network-react-1.2.2.tgz#84031ea068abf4b8518ab79409adb18eaa4cb839"
   dependencies:
     lodash "^4.17.15"
-    vis-data "^6.5.0"
-    vis-network "^7.4.0"
+    vis-data "^6.5.1"
+    vis-network "^7.4.2"
     vis-util "^4.0.0"
 
-vis-network@^7.4.0:
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/vis-network/-/vis-network-7.4.0.tgz#312298d7cd26d3146a2800317de5d6daae0b1f8c"
+vis-network@^7.4.2:
+  version "7.5.2"
+  resolved "https://registry.yarnpkg.com/vis-network/-/vis-network-7.5.2.tgz#13e3b0f22adbec36b34c4316c107df331f0659b8"
 
 vis-util@^4.0.0:
   version "4.0.0"
