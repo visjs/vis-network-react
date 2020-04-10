@@ -61,7 +61,6 @@ class Graph extends Component {
     if (eventsChange) {
       let events = this.props.events || {};
       for (let eventName of Object.keys(events)) this.Network.off(eventName, events[eventName]);
-
       events = nextProps.events || {};
       for (let eventName of Object.keys(events)) this.Network.on(eventName, events[eventName]);
     }
