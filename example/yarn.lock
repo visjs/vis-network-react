@@ -9308,9 +9308,9 @@ vis-data@^6.5.1:
   version "6.5.1"
   resolved "https://registry.yarnpkg.com/vis-data/-/vis-data-6.5.1.tgz#cd11f8bbf4a17064559b7c75532c3d6f419ff290"
 
-vis-network-react@1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/vis-network-react/-/vis-network-react-1.2.2.tgz#84031ea068abf4b8518ab79409adb18eaa4cb839"
+vis-network-react@1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/vis-network-react/-/vis-network-react-1.2.3.tgz#6c566faef4ed48d9517b046ad42ecf11a034c94b"
   dependencies:
     lodash "^4.17.15"
     vis-data "^6.5.1"
