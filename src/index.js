@@ -4,7 +4,7 @@ import isEqual from "lodash/isEqual";
 import differenceWith from "lodash/differenceWith";
 import { DataSet } from "vis-data";
 import { Network } from "vis-network/peer/esm/vis-network";
-import uuid from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 import PropTypes from "prop-types";
 
 import "vis-network/styles/vis-network.css";
@@ -15,40 +15,40 @@ class Graph extends Component {
     const { identifier } = props;
     this.updateGraph = this.updateGraph.bind(this);
     this.state = {
-      identifier: identifier !== undefined ? identifier : uuid.v4()
+      identifier: identifier !== undefined ? identifier : uuidv4()
     };
     this.container = React.createRef();
   }
 
   componentDidMount() {
-    this.edges = new DataSet(this.props.graph.edges);
-    this.nodes = new DataSet(this.props.graph.nodes);
+    this.edges = new DataSet(this.props.data.edges);
+    this.nodes = new DataSet(this.props.data.nodes);
 
     this.updateGraph();
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    let nodesChange = !isEqual(this.props.graph.nodes, nextProps.graph.nodes);
-    let edgesChange = !isEqual(this.props.graph.edges, nextProps.graph.edges);
+    let nodesChange = !isEqual(this.props.data.nodes, nextProps.data.nodes);
+    let edgesChange = !isEqual(this.props.data.edges, nextProps.data.edges);
     let optionsChange = !isEqual(this.props.options, nextProps.options);
     let eventsChange = !isEqual(this.props.events, nextProps.events);
-
+    console.log('should change?')
     if (nodesChange) {
       const idIsEqual = (n1, n2) => n1.id === n2.id;
-      const nodesRemoved = differenceWith(this.props.graph.nodes, nextProps.graph.nodes, idIsEqual);
-      const nodesAdded = differenceWith(nextProps.graph.nodes, this.props.graph.nodes, idIsEqual);
+      const nodesRemoved = differenceWith(this.props.data.nodes, nextProps.data.nodes, idIsEqual);
+      const nodesAdded = differenceWith(nextProps.data.nodes, this.props.data.nodes, idIsEqual);
       const nodesChanged = differenceWith(
-        differenceWith(nextProps.graph.nodes, this.props.graph.nodes, isEqual),
+        differenceWith(nextProps.data.nodes, this.props.data.nodes, isEqual),
         nodesAdded
       );
       this.patchNodes({ nodesRemoved, nodesAdded, nodesChanged });
     }
 
     if (edgesChange) {
-      const edgesRemoved = differenceWith(this.props.graph.edges, nextProps.graph.edges, isEqual);
-      const edgesAdded = differenceWith(nextProps.graph.edges, this.props.graph.edges, isEqual);
+      const edgesRemoved = differenceWith(this.props.data.edges, nextProps.data.edges, isEqual);
+      const edgesAdded = differenceWith(nextProps.data.edges, this.props.data.edges, isEqual);
       const edgesChanged = differenceWith(
-        differenceWith(nextProps.graph.edges, this.props.graph.edges, isEqual),
+        differenceWith(nextProps.data.edges, this.props.data.edges, isEqual),
         edgesAdded
       );
       this.patchEdges({ edgesRemoved, edgesAdded, edgesChanged });
@@ -107,10 +107,10 @@ class Graph extends Component {
     let options = defaultsDeep(defaultOptions, this.props.options);
     this.Network = new Network(
       this.container.current,
-      Object.assign({}, this.props.graph, {
-        edges: this.edges.get(),
-        nodes: this.nodes.get(),
-      }),
+      {
+        nodes: this.nodes,
+        edges: this.edges,
+      },
       options
     );
 
@@ -135,25 +135,17 @@ class Graph extends Component {
 
   render() {
     const { identifier } = this.state;
-    const { style } = this.props;
-    return React.createElement(
-      "div",
-      {
-        id: identifier,
-        ref: this.container,
-        style
-      },
-      identifier
-    );
+    const { style } = this.props;[]
+    return <div id={identifier} style={style} ref={this.container}></div>
   }
 }
 
 Graph.defaultProps = {
-  graph: {},
+  data: {},
   style: { width: "100%", height: "100%" }
 };
 Graph.propTypes = {
-  graph: PropTypes.object,
+  data: PropTypes.object,
   style: PropTypes.object,
   getNetwork: PropTypes.func,
   getNodes: PropTypes.func,
