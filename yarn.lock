@@ -1517,6 +1517,11 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
+moment@^2.26.0:
+  version "2.26.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.26.0.tgz#5e1f82c6bafca6e83e808b30c8705eed0dcbd39a"
+  integrity sha512-oIixUO+OamkUkwjhAVE18rAMfRJNsNe/Stid/gwHSOfHrOtw9EhAY2AHvdKZ/k/MggcYELFCJz/Sn2pL8b8JMw==
+
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -2006,20 +2011,25 @@ util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
 
-vis-data@^6.5.1:
-  version "6.5.1"
-  resolved "https://registry.yarnpkg.com/vis-data/-/vis-data-6.5.1.tgz#cd11f8bbf4a17064559b7c75532c3d6f419ff290"
-  integrity sha512-bOIG0REskXot0JbuAYLFRR61xf4ls+nIYNnZ7X04iq2y/Vrg896A/bfquQjhsERZipOmCgllAR0d58OGyo9s0g==
+uuid@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.1.0.tgz#6f1536eb43249f473abc6bd58ff983da1ca30d8d"
+  integrity sha512-CI18flHDznR0lq54xBycOVmphdCYnQLKn8abKn7PXUiKUGdEd+/l9LWNJmugXel4hXq7S+RMNl34ecyC9TntWg==
 
-vis-network@^7.4.2:
-  version "7.4.2"
-  resolved "https://registry.yarnpkg.com/vis-network/-/vis-network-7.4.2.tgz#1f656762a76581947766bcf3729e7d5d5ca079a1"
-  integrity sha512-h5GRMOAF9xnrfPip3lYDIiO0ldaEVW9P/X7WEwmtqbzIZJz5FA+m9Ygcjqwyq/chORwtTxd/rjG8YBqtr/kaqQ==
+vis-data@^6.5.3:
+  version "6.5.3"
+  resolved "https://registry.yarnpkg.com/vis-data/-/vis-data-6.5.3.tgz#39b3b66f93a393b9f2a61416e0185505e210d6f2"
+  integrity sha512-y7NlLWKnzEfVVUT6LYZrTbZGrFummHlHlRa/cv8OWL5O52fi9l0qUsHk/VhBkEEuoQRR+u6ZMyriFauvXXtSKQ==
 
-vis-util@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/vis-util/-/vis-util-4.0.0.tgz#a9900cffb0bbcef3ce88d5834f82b03808101e10"
-  integrity sha512-HLInh9yhJe3AH8I9tgWna304jYABa47Y9kO4M0QKtgSLnVgz7xK0952HFCeGMBJWMXr9XXWporoz/XqND15ukQ==
+vis-network@^7.6.9:
+  version "7.6.9"
+  resolved "https://registry.yarnpkg.com/vis-network/-/vis-network-7.6.9.tgz#80178ae29123f662b416b0da3861acd173974c00"
+  integrity sha512-oXB74TkXEJbhqsS6Iejj6tW+p3UohHzSub2i4lmA2e0CKkWv6MOfSCWMSwyGVLQqw58Dq6ar7/BL5Sr5xrwpvg==
+
+vis-util@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/vis-util/-/vis-util-4.0.2.tgz#3e500eb85ceedd45cbfca90a0b0371a36e9be46b"
+  integrity sha512-clGBek4sgafknI6CnGUZTRY0PVRr1meh8bVtEfpJVe1u1uC+t5J2ODrTVelhIPdvFtEVnfNcrrzQOo/3eSCAiw==
 
 wrappy@1:
   version "1.0.2"
