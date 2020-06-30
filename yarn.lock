@@ -3158,17 +3158,17 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-vis-data@6.6.1:
+vis-data@^6.6.1:
   version "6.6.1"
   resolved "https://registry.yarnpkg.com/vis-data/-/vis-data-6.6.1.tgz#2aa52e46c305ad46bb7abe6e7634e2eecd743b15"
   integrity sha512-xmujDB2Dzf8T04rGFJ9OP4OA6zRVrz8R9hb0CVKryBrZRCljCga9JjSfgctA8S7wdZu7otDtUIwX4ZOgfV/57w==
 
-vis-network@7.6.9:
-  version "7.6.9"
-  resolved "https://registry.yarnpkg.com/vis-network/-/vis-network-7.6.9.tgz#80178ae29123f662b416b0da3861acd173974c00"
-  integrity sha512-oXB74TkXEJbhqsS6Iejj6tW+p3UohHzSub2i4lmA2e0CKkWv6MOfSCWMSwyGVLQqw58Dq6ar7/BL5Sr5xrwpvg==
+vis-network@^7.8.0:
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/vis-network/-/vis-network-7.8.0.tgz#13c9cd4152110dc443af2a2c806cdad7c801e110"
+  integrity sha512-nQLBaMZODkeC2T6DEcczuKVtC2f8IZtOeNlq3U3AOvrh8r8ippS3qn/vUafiEjjsAx1fGCe03icTs0WVL27iKw==
 
-vis-util@4.3.2:
+vis-util@^4.3.2:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/vis-util/-/vis-util-4.3.2.tgz#85174bad67744a16c712f0a4bee60f8c19fc6865"
   integrity sha512-FIS75hhrzbX1qJwFVwVVm1q2/TEktJWjgWsV0T3E9AYC4PWyQCBKk2LgsSLi+O8NBi7gTe9D4K75MqdPTHrRnA==
