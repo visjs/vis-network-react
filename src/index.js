@@ -118,6 +118,12 @@ const Graph = ({
     for (const eventName of Object.keys(events)) {
       network.current.on(eventName, events[eventName]);
     }
+
+    return () => {
+      for (const eventName of Object.keys(events)) {
+        network.current.off(eventName, events[eventName]);
+      }
+    };
   }, [events]);
 
   return <div ref={container} style={style} />;
