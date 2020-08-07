@@ -3309,10 +3309,10 @@ vis-network@7.10.2:
   resolved "https://registry.yarnpkg.com/vis-network/-/vis-network-7.10.2.tgz#b318f1907cf006d9640c4c31a262e0782405a3cf"
   integrity sha512-KDx2agbDnaiE0Bye4AcCRqTn5mxzDKhdUNpKkzSn0AOLBmdhNtPGjxAFluAmvFVyiSK5R6Q5KIWdLjeIMu/PAQ==
 
-vis-util@4.3.3:
-  version "4.3.3"
-  resolved "https://registry.yarnpkg.com/vis-util/-/vis-util-4.3.3.tgz#4bd9013cc150d71b5d6ace24fab00416aa87240f"
-  integrity sha512-W26mSyu7RSFa+cE0HipiVvaCRJGJjcltB0sE5FteMIhZ9j10NpSggub+jQEJm2TEy4uj9LG0CTMU8xrCwLcJ/w==
+vis-util@4.3.4:
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/vis-util/-/vis-util-4.3.4.tgz#02319fbd909f82782b96a36d1224f1beea67f8b2"
+  integrity sha512-hJIZNrwf4ML7FYjs+m+zjJfaNvhjk3/1hbMdQZVnwwpOFJS/8dMG8rdbOHXcKoIEM6U5VOh3HNpaDXxGkOZGpw==
 
 which@^2.0.1:
   version "2.0.2"
