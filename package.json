@@ -41,7 +41,7 @@
   "dependencies": {
     "lodash": "4.17.20",
     "moment": "2.27.0",
-    "uuid": "7.0.3",
+    "uuid": "8.3.0",
     "vis-data": "7.0.0",
     "vis-network": "8.2.0",
     "vis-util": "4.3.4"
