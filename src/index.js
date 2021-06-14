@@ -106,6 +106,18 @@ const Graph = ({
       edges.current.add(edgesAdded);
       edges.current.update(edgesChanged);
     }
+
+    if ((nodesChange || edgesChange) && getNetwork) {
+      getNetwork(network.current);
+    }
+
+    if (nodesChange && getNodes) {
+      getNodes(nodes.current);
+    }
+
+    if (edgesChange && getEdges) {
+      getEdges(edges.current);
+    }
   }, [data]);
 
   useEffect(() => {
