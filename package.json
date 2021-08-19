@@ -20,8 +20,8 @@
   "homepage": "https://github.com/visjs/vis-network-react#readme",
   "peerDependencies": {
     "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": ">=16.13.1 <18.0.0",
+    "react-dom": ">=16.13.1 <18.0.0"
   },
   "devDependencies": {
     "@babel/cli": "7.10.5",
