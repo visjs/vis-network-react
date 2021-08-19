@@ -3,6 +3,7 @@
   "version": "1.3.6",
   "description": "",
   "main": "./lib/index.js",
+  "types": "@types/index.d.ts",
   "scripts": {
     "link": "cd ./lib && npm link && cd ../example && npm link \"vis-network-react\"",
     "build": "./node_modules/.bin/babel src --out-file ./lib/index.js",
