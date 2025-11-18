@@ -43,7 +43,7 @@
     "moment": "2.27.0",
     "uuid": "8.3.0",
     "vis-data": "7.0.0",
-    "vis-network": "8.2.0",
+    "vis-network": "8.5.6",
     "vis-util": "4.3.4"
   }
 }
